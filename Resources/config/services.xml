@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="zeliard91_dynamo_db_connector.class">Zeliard91\Bundle\DynamoDBConnectorBundle\Service\Connector</parameter>
+        <parameter key="zeliard91_dynamo_db_connector.key" />
+        <parameter key="zeliard91_dynamo_db_connector.secret" />
+        <parameter key="zeliard91_dynamo_db_connector.region" />
+        <parameter key="zeliard91_dynamo_db_connector.base_url" />
+        <parameter key="zeliard91_dynamo_db_connector.entity_namespaces" />
+    </parameters>
+
+    <services>
+        <service id="zeliard91_dynamo_db_connector" class="%zeliard91_dynamo_db_connector.class%">
+            <argument type="service" id="logger" />
+            <tag name="monolog.logger" channel="zeliard91.dynamodb" />
+            <call method="setCredentials">
+                <argument>%zeliard91_dynamo_db_connector.key%</argument>
+                <argument>%zeliard91_dynamo_db_connector.secret%</argument>
+                <argument>%zeliard91_dynamo_db_connector.region%</argument>
+                <argument>%zeliard91_dynamo_db_connector.base_url%</argument>
+            </call>
+            <call method="setEntityNamespaces">
+                <argument>%zeliard91_dynamo_db_connector.entity_namespaces%</argument>
+            </call>
+        </service>
+    </services>
+</container>

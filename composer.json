@@ -1,0 +1,26 @@
+{
+    "name": "zeliard91/dynamodb-connector-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony 2 DynamoDB connexion service designed to work with cpliakas/dynamo-db-odm",
+    "keywords": [ "zeliard91", "dynamodb", "connector", "sf2"],
+    "homepage": "https://github.com/zeliard91/DynamoDBConnectorBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damien Matabon",
+            "homepage": "http://www.makemyweb.fr/",
+            "email": "damien.matabon@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.*",
+        "symfony/monolog-bundle": "~2.4",
+        "cpliakas/dynamo-db-odm": "0.*"
+    },
+    "autoload": {
+        "psr-0": { "Zeliard91\\Bundle\\DynamoDBConnectorBundle": "" }
+    },
+    "target-dir": "Zeliard91/Bundle/DynamoDBConnectorBundle"
+}

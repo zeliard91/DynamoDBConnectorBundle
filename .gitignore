@@ -1,0 +1,5 @@
+vendor/*
+Tests/App/cache
+phpunit.xml
+composer.lock
+composer.phar
