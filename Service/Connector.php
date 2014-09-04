@@ -3,6 +3,7 @@
 namespace Zeliard91\Bundle\DynamoDBConnectorBundle\Service;
 
 use Zeliard91\Bundle\DynamoDBConnectorBundle\Repository\RepositoryFactory;
+use Zeliard91\Bundle\DynamoDBConnectorBundle\Schema\SchemaManager;
 use Aws\DynamoDb\DynamoDbClient;
 use Cpliakas\DynamoDb\ODM\DocumentManager;
 
@@ -36,6 +37,11 @@ class Connector
      * @var array
      */
     private $entity_namespaces;
+
+    /**
+     * @var Zeliard91\Bundle\DynamoDBConnectorBundle\Schema\SchemaManager
+     */
+    private $SchemaManager;
     
     /**
      * constructor
@@ -112,5 +118,18 @@ class Connector
     public function getRepository($entityName)
     {
         return $this->repositoryFactory->getRepository($this->getManager(), $entityName, $this->entity_namespaces);
+    }
+
+    
+    /**
+     * Returns schema manager
+     * @return SchemaManager
+     */
+    public function getSchemaManager()
+    {
+        if (!isset($this->schemamanager)) {
+            $this->schemamanager = new SchemaManager($this->dynamoDb, $this->entity_namespaces);
+        }
+        return $this->schemamanager;
     }
 }

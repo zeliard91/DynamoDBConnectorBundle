@@ -35,4 +35,9 @@ class DefaultRepository
     {
         return $this->dm->scan($this->class, $conditions);
     }
+
+    public function findAll()
+    {
+        return $this->scan(array());
+    }
 }

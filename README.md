@@ -76,6 +76,7 @@ You can get DynamoDB client and document manager in your application by calling 
 
 $document_manager = $this->get('zeliard91_dynamo_db_connector')->getManager();
 $dynamo_client    = $this->get('zeliard91_dynamo_db_connector')->getDynamoDb();
+$schema_manager   = $this->get('zeliard91_dynamo_db_connector')->getSchemaManager();
 
 ```
 
@@ -123,5 +124,22 @@ You can now call the method in your controller :
 
 $book_repository = $this->get('zeliard91_dynamo_db_connector')->getRepository('Book');
 $books = $book_repository->findByAuthor($author);
+
+```
+
+### Schema Manager
+
+By using this object, you can create, check or delete the table linked to your entity 
+
+``` php
+<?php
+
+$schema_manager = $this->get('zeliard91_dynamo_db_connector')->getSchemaManager();
+
+
+$schema_manager->isTableExists('Book'); // returns true or false
+$schema_manager->createTable('Book'); // throws exception if table already exists
+$schema_manager->deleteTable('Book'); // throws exception if table does not exist
+
 
 ```
