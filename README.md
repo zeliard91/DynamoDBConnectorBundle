@@ -125,6 +125,14 @@ You can now call the method in your controller :
 $book_repository = $this->get('zeliard91_dynamo_db_connector')->getRepository('Book');
 $books = $book_repository->findByAuthor($author);
 
+
+// Here are some methods from the extended DefaultRepository
+
+$book  = $book_repository->find($id);
+$book  = $book_repository->find($id, $range); // if you have defined a range attribute
+$books = $book_repository->findAll();
+
+
 ```
 
 ### Schema Manager

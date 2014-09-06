@@ -36,8 +36,28 @@ class DefaultRepository
         return $this->dm->scan($this->class, $conditions);
     }
 
+    /**
+     * Returns all records
+     * @return array
+     */
     public function findAll()
     {
         return $this->scan(array());
+    }
+
+    /**
+     * Returns a specific record
+     * @param  mixed $key
+     * @param  mixed $range
+     * @return object
+     */
+    public function find($key, $range = null)
+    {
+        if (is_null($range)) {
+            return $this->read($key);
+        } else
+        {
+            return $this->read(array($key, $range));
+        }
     }
 }
